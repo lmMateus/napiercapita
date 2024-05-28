@@ -113,10 +113,7 @@ export default function CardLogin() {
         <Button type="submit" style={{ width: '143px' }} onClick={handleSubmit}>Confirmar</Button>
         <Button style={{ width: '143px' }} onClick={acessaCadastro}>Cadastrar</Button>
       </CardFooter>
-      <CardFooter className="flex justify-between">
-        <Button onClick={handlePasswordReset}>
-          <Mail className="mr-2 h-4 w-4" /> Esqueci minha senha
-        </Button>
+      <CardFooter className="flex justify-between">        
         <Button onClick={acessaHome}>Cancelar</Button>
       </CardFooter>
     </Card>
