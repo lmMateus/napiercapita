@@ -20,7 +20,7 @@ export default function PersonaCardComponent({ onClick }) {
             <div className="p-4">
               <h3 className="text-xl font-semibold mb-2">Investidor</h3>
               <p className="text-gray-700 text-sm sm:text-base">
-                Ao escolher a opção "investidor", você poderá aplicar seu
+                Ao escolher a opção investidor, você poderá aplicar seu
                 dinheiro em títulos de crédito, como títulos do governo ou
                 corporativos, buscando retornos por meio de pagamentos de juros
                 e valorização ao longo do tempo.
