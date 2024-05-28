@@ -5,7 +5,6 @@ import { Label } from "@/components/ui/label"
 import { Mail } from "lucide-react"
 import { Checkbox } from "@/components/ui/checkbox"
 import React, { useState } from 'react'
-import showAlert from '../../../lib/showAlert'
 import sendPasswordResetEmail from "../api/resetPassword"
 import { login } from "../api/login.js"
 
@@ -19,39 +18,21 @@ export default function CardLogin() {
     try {
       const user = await login(username, password);
     } catch (error) {
-      showAlert("destructive", "Erro...", "Usuário ou senha estão incorretos ou não estão cadastrados!");
+      console.log('432')
       console.error('Erro ao tentar fazer login: ', error.message);
       setErro(error.message);
     }
   };
 
-  const handlePasswordReset = async (event) => {
-    event.preventDefault();
-    if (username.trim() === '') {
-      showAlert("destructive", "Campo de usuário vazio...", "Por favor, verifique seu preenchimento!");
-    } else {
-      try {
-        const result = await sendPasswordResetEmail(username);
-        if (result) {
-          showAlert("default", "Solicitação de redefinição de senha enviada!", "Verifique o e-mail:" + username)
-          console.log('Solicitação de redefinição de senha enviada para o e-mail: ', username);
-        } else {
-          showAlert("destructive", "E-mail não cadastrado...", "Verifique se sua digitação está correta!");
-        }
-      } catch (error) {
-        console.error('Erro ao enviar a solicitação de redefinição de senha: ', error.message);
-        setErro(error.message);
-      }
-    }
-  };
+  
 
   const handleSubmit = (event) => {
     event.preventDefault();
 
     if (username.trim() === '') {
-      showAlert("destructive", "Campo de usuário vazio...", "Por favor, verifique seu preenchimento!");
+      console.log('432')
     } else if (password.trim() === '') {
-      showAlert("destructive", "Campo de senha vazio...", "Por favor, verifique seu preenchimento!");
+      console.log('432')
     } else {
       handleLogin();
     }
