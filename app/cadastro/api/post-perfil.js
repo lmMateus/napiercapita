@@ -3,7 +3,7 @@ import { db } from "@/lib/db";
 import { hash } from "bcrypt";
 import { error } from "console";
 import { randomInt } from "crypto";
-import { supabase} from "@/lib/supabaseClient";
+import { supabase} from "@/utils/supabase/client";
 
 export const postPerfil = async (
   email_perfil,

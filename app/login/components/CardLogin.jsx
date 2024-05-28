@@ -5,7 +5,6 @@ import { Label } from "@/components/ui/label"
 import { Mail } from "lucide-react"
 import { Checkbox } from "@/components/ui/checkbox"
 import React, { useState } from 'react'
-import sendPasswordResetEmail from "../api/resetPassword"
 import { login } from "../api/login.js"
 
 export default function CardLogin() {

@@ -11,20 +11,13 @@ import LogoNapierCapital from "@/public/logo_transparente.png";
 import TabelaPerfil from './components/perfil/TabelaPefil';
 import formatDate from '../(marketplace)/lib/formatDate';
 
-import getCurrentSession from '@/lib/currentSession';
+
 
 export default function Relatorio() {
     const perfil = "ambos"; // perfil do usuário
     const codPerfil = "433dd6a9-f556-4211-aa8a-198f9efd4f23"; // Obter dinamicamente
 
-    useEffect(() => {
-        const fetchSession = async () => {
-          const session = await getCurrentSession();
-          console.log(session)
-        }
-        fetchSession();
-      }, []);
-
+    
     const [dataSelected, setDataSelected] = useState({
         from: "2024-01-01T05:00:00.000Z",
         to: "2024-01-01T23:00:00.000Z"

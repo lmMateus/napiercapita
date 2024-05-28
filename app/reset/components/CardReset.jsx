@@ -10,7 +10,6 @@ import { useForm } from "react-hook-form";
 import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
 import React, { useState } from 'react'
-import getCurrentUser from "../../../lib/currentUser"
 
 export default function CardReset() {
   const [showPassword, setShowPassword] = useState(false);

@@ -1,6 +1,5 @@
 "use server";
 import { db } from "@/lib/db";
-import getCurrentUser from "../../../lib/currentUser";
 import { getPerfil } from "./get-perfil";
 
 export const postTitulo = async (data) => {
