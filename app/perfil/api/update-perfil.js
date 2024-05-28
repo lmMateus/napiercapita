@@ -2,7 +2,6 @@
 import { db } from "@/lib/db";
 import { hash } from "bcrypt";
 import { randomInt } from "crypto";
-import { supabase} from "@/lib/supabaseClient";
 
 export const updateContatoPJ = async (cod, data) => {
   try {
@@ -11,9 +10,6 @@ export const updateContatoPJ = async (cod, data) => {
       data: {
         email: data.email,
       },
-    })
-    const { error } = await supabase.auth.updateUser({
-      email: data.email,
     })
   } catch (error) {
     console.error('Erro ao atualizar perfil:', error)
@@ -48,9 +44,6 @@ export const updateContatoPF = async (cod, data) => {
       data: {
         email: data.email,
       },
-    })
-    const supa = await supabase.auth.updateUser({
-      email: data.email,
     })
   } catch (error) {
     console.error('Erro ao atualizar perfil:', error)
@@ -88,9 +81,6 @@ export const updateSenha = async (cod, pass) =>{
       data: {
         senha: hashedPassword
       },
-    })
-    const { data, error } = await supabase.auth.updateUser({
-      password: pass
     })
   } catch (error) {
     console.error('Erro ao atualizar perfil:', error)
