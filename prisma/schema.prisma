@@ -1,0 +1,194 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model perfil {
+  cod_perfil        String              @id @default(uuid()) @db.Uuid
+  email             String              @unique    
+  senha             String
+  tipo_perfil       String
+  tipo_persona      String
+  perfil_ativo      Boolean
+  pessoa_fisica     pessoa_fisica?
+  pessoa_juridica   pessoa_juridica?
+  titulo            titulo[]
+  titulo_antecipado titulo_antecipado[]
+}
+
+model pessoa_juridica {
+  cod_perfil     String  @id @db.Uuid
+  perfil         perfil  @relation(fields: [cod_perfil], references: [cod_perfil])
+  cnpj           String  @unique @db.VarChar(14)
+  razao_social   String
+  nome_fantasia  String
+  capital_social Decimal @db.Decimal(16, 2)
+  telefone       String  @db.VarChar(11)
+  cep            String  @db.VarChar(8)
+  rua            String
+  numero         String
+  bairro         String
+  cidade         String
+  uf             String
+  complemento    String
+}
+
+model pessoa_fisica {
+  cod_perfil      String   @id @db.Uuid
+  perfil          perfil   @relation(fields: [cod_perfil], references: [cod_perfil])
+  cpf             String   @unique @db.VarChar(11)
+  rg              String   @unique @db.VarChar(9)
+  nome            String
+  data_nascimento DateTime @db.Date
+  telefone        String   @db.VarChar(10)
+  celular         String   @db.VarChar(11)
+  cep             String   @db.VarChar(8)
+  rua             String
+  numero          String
+  bairro          String
+  cidade          String
+  uf              String
+  complemento     String
+}
+
+model titulo {
+  cod_titulo         String              @id @default(uuid()) @db.Uuid
+  cod_perfil         String              @db.Uuid
+  perfil             perfil              @relation(fields: [cod_perfil], references: [cod_perfil])
+  tipo_titulo        String
+  status_titulo      String
+  risco              String
+  descricao          String
+  emissor            String
+  doc_emissor        String
+  valor_ofertado     Decimal             @db.Decimal(16, 2)
+  valor_titulo       Decimal             @db.Decimal(16, 2)
+  data_cadastro      DateTime            @default(now()) @db.Date
+  data_vencimento    DateTime            @db.Date
+  desagio            Decimal             @db.Decimal(5, 2)
+  cheque             cheque?
+  credito_tributario credito_tributario?
+  debenture          debenture?
+  factoring          factoring?
+  garantia           garantia?
+  nota_promissoria   nota_promissoria?
+  titulo_antecipado  titulo_antecipado?
+}
+
+model titulo_antecipado {
+  cod_antecipado   String   @id @default(uuid()) @db.Uuid
+  cod_titulo       String   @unique @db.Uuid
+  cod_perfil       String   @db.Uuid
+  data_antecipacao DateTime @default(now()) @db.Date
+  valor_pago       Decimal  @db.Decimal(16, 2)
+  perfil           perfil   @relation(fields: [cod_perfil], references: [cod_perfil])
+  titulo           titulo   @relation(fields: [cod_titulo], references: [cod_titulo])
+}
+
+model factoring {
+  cod_titulo         String   @id @unique @db.Uuid
+  contrato           String
+  contratante        String
+  valor_adiantamento Decimal  @default(0) @db.Decimal(16, 2)
+  data_transacao     DateTime @db.Date
+  titulo             titulo   @relation(fields: [cod_titulo], references: [cod_titulo])
+}
+
+model cheque {
+  cod_titulo          String   @id @unique @db.Uuid
+  num_cheque          String
+  nome_banco          String
+  num_banco           String
+  data_emissao        DateTime @db.Date
+  nome_beneficiario   String   @default("")
+  doc_beneficiario    String   @default("") @db.VarChar(14)
+  assinatura_emitente Boolean
+  titulo              titulo   @relation(fields: [cod_titulo], references: [cod_titulo])
+}
+
+model credito_tributario {
+  cod_titulo               String   @id @unique @db.Uuid
+  assinatura_partes        Boolean
+  natureza_credito         String
+  data_apuracao_inicio     DateTime @db.Date
+  data_apuracao_fim        DateTime @db.Date
+  motivo_credito           String
+  documentacao_suporte     Boolean
+  data_requerimento_formal DateTime @db.Date
+  data_solicitacao         DateTime @db.Date
+  titulo                   titulo   @relation(fields: [cod_titulo], references: [cod_titulo])
+}
+
+model nota_promissoria {
+  cod_titulo         String   @id @unique @db.Uuid
+  data_emissao       DateTime @db.Date
+  local_emissao      String
+  nome_beneficiario  String
+  doc_beneficiario   String   @db.VarChar(14)
+  local_pagamento    String
+  clausula_a_ordem   String
+  numero_promissoria Int
+  titulo             titulo   @relation(fields: [cod_titulo], references: [cod_titulo])
+}
+
+model debenture {
+  cod_titulo          String   @id @unique @db.Uuid
+  numero              Int
+  assinatura_emitente Boolean
+  valor_nominal       Decimal  @db.Decimal(16, 2)
+  data_emissao        DateTime @db.Date
+  prazo_vencimento    DateTime @db.Date
+  taxa_juros          Decimal  @db.Decimal(6, 2)
+  clausulas           String
+  resgate_antecipado  Decimal  @db.Decimal(16, 2)
+  inf_emissao         String
+  local_pagamento     String
+  titulo              titulo   @relation(fields: [cod_titulo], references: [cod_titulo])
+}
+
+model garantia {
+  cod_garantia   String       @id @default(uuid()) @db.Uuid
+  cod_titulo     String       @unique @db.Uuid
+  tipo_garantia  String
+  valor_garantia Decimal      @db.Decimal(16, 2)
+  automoveis     automoveis?
+  bancaria       bancaria?
+  titulo         titulo       @relation(fields: [cod_titulo], references: [cod_titulo])
+  imobiliaria    imobiliaria?
+  outros         outros?
+}
+
+model imobiliaria {
+  cod_garantia String   @id @unique @db.Uuid
+  matricula    String
+  cartorio     String
+  comarca      String
+  garantia     garantia @relation(fields: [cod_garantia], references: [cod_garantia])
+}
+
+model automoveis {
+  cod_garantia String   @id @unique @db.Uuid
+  renavan      String
+  placa        String
+  tipo         String
+  garantia     garantia @relation(fields: [cod_garantia], references: [cod_garantia])
+}
+
+model bancaria {
+  cod_garantia String   @id @unique @db.Uuid
+  banco        String
+  numero       String
+  tipo         String
+  garantia     garantia @relation(fields: [cod_garantia], references: [cod_garantia])
+}
+
+model outros {
+  cod_garantia String   @id @unique @db.Uuid
+  descricao    String
+  tipo         String
+  garantia     garantia @relation(fields: [cod_garantia], references: [cod_garantia])
+}

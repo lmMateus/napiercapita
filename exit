@@ -1,0 +1,24 @@
+[33m0080521[m[33m ([m[1;36mHEAD -> [m[1;32mmain[m[33m)[m HEAD@{0}: commit: Front-End Tela de cadastro de titulos
+[33m13c8e5c[m HEAD@{1}: commit: Nova tela cadastro Titulos
+[33m51d9808[m HEAD@{2}: reset: moving to 51d9808
+[33m1ef3ee2[m HEAD@{3}: commit: Alter cadastro_titulos page
+[33m51d9808[m HEAD@{4}: pull: Fast-forward
+[33mca0d28a[m HEAD@{5}: commit: Alteração tela de cadastro de titulos
+[33m0140887[m HEAD@{6}: commit (merge): Merge branch 'main' of https://github.com/Everton-Victor/NapierCapital
+[33m74d1cc3[m HEAD@{7}: commit: Alteração tela cadastro de titulos
+[33m639cf27[m HEAD@{8}: commit: sign-in_page
+[33m3a35098[m HEAD@{9}: pull: Fast-forward
+[33me1b8d27[m HEAD@{10}: commit: finish_signIn_page
+[33m1629fa4[m HEAD@{11}: commit: changed_sign_in_page_and_prisma_scheme
+[33m1765a59[m HEAD@{12}: pull: Merge made by the 'ort' strategy.
+[33m974b6a4[m HEAD@{13}: pull: Merge made by the 'ort' strategy.
+[33m8fe6064[m HEAD@{14}: commit: Upate sign-in page
+[33m520d7e0[m HEAD@{15}: pull: Merge made by the 'ort' strategy.
+[33m5bd94e2[m HEAD@{16}: commit: Arrumando a tela de cadastro
+[33m5f3f911[m HEAD@{17}: commit: DataBase changes: Add perfil_ativo and unique to cpf, cnpj, rg
+[33m881e3cc[m HEAD@{18}: commit: sign in page database conection
+[33m45b855c[m HEAD@{19}: pull: Fast-forward
+[33mbabfa4f[m HEAD@{20}: commit: Adicionado o hash
+[33m42e608d[m HEAD@{21}: pull: Fast-forward
+[33me2ca549[m HEAD@{22}: commit: Adicionando alteracoes cadastro
+[33m66a7fbd[m HEAD@{23}: clone: from https://github.com/Everton-Victor/NapierCapital.git
